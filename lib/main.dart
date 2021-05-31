@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.pinkAccent,
+      backgroundColor: Colors.orangeAccent,
       body: Column(
         children: <Widget>[
           Expanded(
@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       userInput,
-                      style: TextStyle(fontSize: 50),
+                      style: TextStyle(fontSize: 25),
                     ),
                   ),
                   Container(
@@ -90,16 +90,39 @@ class _HomePageState extends State<HomePage> {
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 4),
                   itemBuilder: (BuildContext context, int index) {
-                    return MyButton(
-                      
-                      buttonText: buttons[index],
-                      color: isOperator(buttons[index])
-                          ? Colors.grey
-                          : Colors.deepPurple[50],
-                      textColor: isOperator(buttons[index])
-                          ? Colors.black
-                          : Colors.black,
-                    );
+                    if (index == 0) {
+                      return MyButton(
+                        buttonTap: () {
+                          setState(() {
+                            userInput = '';
+                          });
+                        },
+                        buttonText: buttons[index],
+                        color: Colors.green,
+                        textColor: Colors.white,
+                      );
+                    } else if (index == 1) {
+                      return MyButton(
+                        buttonText: buttons[index],
+                        color: Colors.redAccent,
+                        textColor: Colors.white,
+                      );
+                    } else {
+                      return MyButton(
+                        buttonTap: () {
+                          setState(() {
+                            userInput += buttons[index];
+                          });
+                        },
+                        buttonText: buttons[index],
+                        color: isOperator(buttons[index])
+                            ? Colors.grey
+                            : Colors.deepPurple[50],
+                        textColor: isOperator(buttons[index])
+                            ? Colors.black
+                            : Colors.black,
+                      );
+                    }
                   }),
             ),
           ),
