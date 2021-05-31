@@ -25,6 +25,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var userInput = '';
   var userAnswer = '';
+  bool pressedEqual = false;
 
   final List<String> buttons = [
     'C',
@@ -112,6 +113,19 @@ class _HomePageState extends State<HomePage> {
                                   userInput.substring(0, userInput.length - 1);
                             }
                           });
+
+                          setState(() {
+                            equalPressed();
+                          });
+                        },
+                        buttonText: buttons[index],
+                        color: Colors.redAccent,
+                        textColor: Colors.white,
+                      );
+                    } else if (index == 17) {
+                      return MyButton(
+                        buttonTap: () {
+                          setState(() {});
                         },
                         buttonText: buttons[index],
                         color: Colors.redAccent,
@@ -133,6 +147,10 @@ class _HomePageState extends State<HomePage> {
                         buttonTap: () {
                           setState(() {
                             userInput += buttons[index];
+                          });
+
+                          setState(() {
+                            equalPressed();
                           });
                         },
                         buttonText: buttons[index],
@@ -160,9 +178,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   void equalPressed() {
-    userInput = userInput.replaceAll('x', '*'); //math expressions
+    String finalQuestion = userInput;
+    finalQuestion = finalQuestion.replaceAll('x', '*'); //math expressions
     Parser par = Parser();
-    Expression exp = par.parse(userInput);
+    Expression exp = par.parse(finalQuestion);
     ContextModel cm = ContextModel();
     double evaluate = exp.evaluate(EvaluationType.REAL, cm);
     userAnswer = evaluate.toString();
