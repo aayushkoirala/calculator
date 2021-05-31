@@ -52,6 +52,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.orangeAccent,
       body: Column(
         children: <Widget>[
@@ -64,7 +65,6 @@ class _HomePageState extends State<HomePage> {
                     height: 50,
                   ),
                   Container(
-              
                     padding: EdgeInsets.all(20),
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -73,13 +73,12 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Divider(),
-                  
                   Container(
                     padding: EdgeInsets.all(20),
                     alignment: Alignment.centerRight,
                     child: Text(
                       userAnswer,
-                      style: TextStyle(fontSize: 50),
+                      style: TextStyle(fontSize: 30),
                     ),
                   ),
                 ],
@@ -90,12 +89,11 @@ class _HomePageState extends State<HomePage> {
             flex: 2,
             child: Container(
               child: GridView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                reverse: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  reverse: true,
                   itemCount: buttons.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 4),
-                 
                   itemBuilder: (BuildContext context, int index) {
                     if (index == 0) {
                       return MyButton(
@@ -161,7 +159,9 @@ class _HomePageState extends State<HomePage> {
                       return MyButton(
                         buttonTap: () {
                           setState(() {
-                            userInput += buttons[index];
+                            if (userInput.length < 20) {
+                              userInput += buttons[index];
+                            }
                           });
 
                           setState(() {
