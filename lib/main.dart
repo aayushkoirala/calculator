@@ -22,6 +22,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var userInput = '';
+  var userAnswer = '';
+
   final List<String> buttons = [
     'C',
     'DEL',
@@ -48,11 +51,36 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.pinkAccent,
       body: Column(
         children: <Widget>[
           Expanded(
-            child: Container(),
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(20),
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      userInput,
+                      style: TextStyle(fontSize: 50),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(20),
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      userAnswer,
+                      style: TextStyle(fontSize: 50),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
           Expanded(
             flex: 2,
@@ -63,6 +91,7 @@ class _HomePageState extends State<HomePage> {
                       crossAxisCount: 4),
                   itemBuilder: (BuildContext context, int index) {
                     return MyButton(
+                      
                       buttonText: buttons[index],
                       color: isOperator(buttons[index])
                           ? Colors.grey
