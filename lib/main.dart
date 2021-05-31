@@ -170,18 +170,17 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  bool isOperator(String x) {
-    if (x == '%' || x == '/' || x == 'x' || x == '-' || x == '+' || x == '=') {
+  bool isOperator (String input) {
+    if (input == '%' || input == '/' || input == 'x' || input == '-' || input == '+' || input == '=') {
       return true;
     }
     return false;
   }
 
   void output() {
-    String finalQuestion = userInput;
-    finalQuestion = finalQuestion.replaceAll('x', '*'); //math expressions
+    userInput = userInput.replaceAll('x', '*'); //math expressions
     Parser par = Parser();
-    Expression exp = par.parse(finalQuestion);
+    Expression exp = par.parse(userInput);
     ContextModel cm = ContextModel();
     double evaluate = exp.evaluate(EvaluationType.REAL, cm);
     userAnswer = evaluate.toString();
