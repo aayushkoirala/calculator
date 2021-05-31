@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.orangeAccent,
+      backgroundColor: Colors.black,
       body: Column(
         children: <Widget>[
           Expanded(
@@ -69,16 +69,17 @@ class _HomePageState extends State<HomePage> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       userInput,
-                      style: TextStyle(fontSize: 25),
+                      style: TextStyle(fontSize: 25, color: Colors.white),
+                      
                     ),
                   ),
-                  Divider(),
+                  Divider(thickness: 2,color: Colors.white),
                   Container(
                     padding: EdgeInsets.all(20),
                     alignment: Alignment.centerRight,
                     child: Text(
                       userAnswer,
-                      style: TextStyle(fontSize: 30),
+                      style: TextStyle(fontSize: 30, color: Colors.white),
                     ),
                   ),
                 ],
@@ -104,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                           });
                         },
                         buttonText: buttons[index],
-                        color: Colors.green,
+                        color: Colors.redAccent,
                         textColor: Colors.white,
                       );
                     } else if (index == 1) {
@@ -122,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                           });
                         },
                         buttonText: buttons[index],
-                        color: Colors.redAccent,
+                        color: Colors.grey,
                         textColor: Colors.white,
                       );
                     } else if (index == 18) {
@@ -141,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                           });
                         },
                         buttonText: buttons[index],
-                        color: Colors.redAccent,
+                        color: Colors.grey,
                         textColor: Colors.white,
                       );
                     } else if (index == 19) {
@@ -152,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                           });
                         },
                         buttonText: buttons[index],
-                        color: Colors.redAccent,
+                        color: Colors.green,
                         textColor: Colors.white,
                       );
                     } else {
@@ -171,9 +172,9 @@ class _HomePageState extends State<HomePage> {
                         buttonText: buttons[index],
                         color: isOperator(buttons[index])
                             ? Colors.grey
-                            : Colors.deepPurple[50],
+                            : Colors.white,
                         textColor: isOperator(buttons[index])
-                            ? Colors.black
+                            ? Colors.white
                             : Colors.black,
                       );
                     }
