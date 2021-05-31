@@ -134,8 +134,10 @@ class _HomePageState extends State<HomePage> {
                       return MyButton(
                         buttonTap: () {
                           setState(() {
-                            userInput = userAnswer;
-                            userAnswer = '';
+                            if (userAnswer != '') {
+                              userInput = userAnswer;
+                              userAnswer = '';
+                            }
                           });
                         },
                         buttonText: buttons[index],
@@ -170,8 +172,13 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  bool isOperator (String input) {
-    if (input == '%' || input == '/' || input == 'x' || input == '-' || input == '+' || input == '=') {
+  bool isOperator(String input) {
+    if (input == '%' ||
+        input == '/' ||
+        input == 'x' ||
+        input == '-' ||
+        input == '+' ||
+        input == '=') {
       return true;
     }
     return false;
