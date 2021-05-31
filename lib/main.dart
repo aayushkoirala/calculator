@@ -1,5 +1,6 @@
 import 'package:calculator/buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 void main() {
   runApp(MyApp());
@@ -33,7 +34,7 @@ class _HomePageState extends State<HomePage> {
     '7',
     '8',
     '9',
-    'x',
+    '*',
     '4',
     '5',
     '6',
@@ -115,6 +116,17 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.redAccent,
                         textColor: Colors.white,
                       );
+                    } else if (index == 19) {
+                      return MyButton(
+                        buttonTap: () {
+                          setState(() {
+                            equalPressed();
+                          });
+                        },
+                        buttonText: buttons[index],
+                        color: Colors.redAccent,
+                        textColor: Colors.white,
+                      );
                     } else {
                       return MyButton(
                         buttonTap: () {
@@ -140,9 +152,18 @@ class _HomePageState extends State<HomePage> {
   }
 
   bool isOperator(String x) {
-    if (x == '%' || x == '/' || x == 'x' || x == '-' || x == '+' || x == '=') {
+    if (x == '%' || x == '/' || x == '*' || x == '-' || x == '+' || x == '=') {
       return true;
     }
     return false;
+  }
+
+  void equalPressed() {
+    String finalInput = userInput;
+    Parser par = Parser();
+    Expression exp = par.parse(finalInput);
+    ContextModel cm = ContextModel();
+    double evaluate = exp.evaluate(EvaluationType.REAL, cm);
+    userAnswer = evaluate.toString();
   }
 }
