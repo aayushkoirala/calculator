@@ -44,8 +44,8 @@ class _HomePageState extends State<HomePage> {
     '3',
     '+',
     '0',
-    '+/-',
     '.',
+    '+/-',
     '=',
   ];
 
@@ -121,10 +121,20 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.redAccent,
                         textColor: Colors.white,
                       );
-                    } else if (index == 17) {
+                    } else if (index == 18) {
                       return MyButton(
                         buttonTap: () {
-                          setState(() {});
+                          setState(() {
+                            double result = double.parse(userAnswer);
+                            if (result < 0) {
+                              result = result.abs();
+                              userAnswer = result.toString();
+                            } else {
+                              result = result * -1;
+                              userAnswer = result.toString();
+                            }
+                            clear();
+                          });
                         },
                         buttonText: buttons[index],
                         color: Colors.redAccent,
@@ -134,10 +144,7 @@ class _HomePageState extends State<HomePage> {
                       return MyButton(
                         buttonTap: () {
                           setState(() {
-                            if (userAnswer != '') {
-                              userInput = userAnswer;
-                              userAnswer = '';
-                            }
+                            clear();
                           });
                         },
                         buttonText: buttons[index],
@@ -191,5 +198,12 @@ class _HomePageState extends State<HomePage> {
     ContextModel cm = ContextModel();
     double evaluate = exp.evaluate(EvaluationType.REAL, cm);
     userAnswer = evaluate.toString();
+  }
+
+  void clear() {
+    if (userAnswer != '') {
+      userInput = userAnswer;
+      userAnswer = '';
+    }
   }
 }
