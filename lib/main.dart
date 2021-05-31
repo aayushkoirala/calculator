@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
     '7',
     '8',
     '9',
-    '*',
+    'x',
     '4',
     '5',
     '6',
@@ -96,6 +96,7 @@ class _HomePageState extends State<HomePage> {
                         buttonTap: () {
                           setState(() {
                             userInput = '';
+                            userAnswer = '';
                           });
                         },
                         buttonText: buttons[index],
@@ -152,16 +153,16 @@ class _HomePageState extends State<HomePage> {
   }
 
   bool isOperator(String x) {
-    if (x == '%' || x == '/' || x == '*' || x == '-' || x == '+' || x == '=') {
+    if (x == '%' || x == '/' || x == 'x' || x == '-' || x == '+' || x == '=') {
       return true;
     }
     return false;
   }
 
   void equalPressed() {
-    String finalInput = userInput;
+    userInput = userInput.replaceAll('x', '*'); //math expressions
     Parser par = Parser();
-    Expression exp = par.parse(finalInput);
+    Expression exp = par.parse(userInput);
     ContextModel cm = ContextModel();
     double evaluate = exp.evaluate(EvaluationType.REAL, cm);
     userAnswer = evaluate.toString();
