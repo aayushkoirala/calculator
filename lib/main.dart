@@ -25,7 +25,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var userInput = '';
   var userAnswer = '';
-  bool pressedEqual = false;
 
   final List<String> buttons = [
     'C',
@@ -115,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                           });
 
                           setState(() {
-                            equalPressed();
+                            output();
                           });
                         },
                         buttonText: buttons[index],
@@ -135,7 +134,8 @@ class _HomePageState extends State<HomePage> {
                       return MyButton(
                         buttonTap: () {
                           setState(() {
-                            equalPressed();
+                            userInput = userAnswer;
+                            userAnswer = '';
                           });
                         },
                         buttonText: buttons[index],
@@ -150,7 +150,7 @@ class _HomePageState extends State<HomePage> {
                           });
 
                           setState(() {
-                            equalPressed();
+                            output();
                           });
                         },
                         buttonText: buttons[index],
@@ -177,7 +177,7 @@ class _HomePageState extends State<HomePage> {
     return false;
   }
 
-  void equalPressed() {
+  void output() {
     String finalQuestion = userInput;
     finalQuestion = finalQuestion.replaceAll('x', '*'); //math expressions
     Parser par = Parser();
