@@ -103,6 +103,14 @@ class _HomePageState extends State<HomePage> {
                       );
                     } else if (index == 1) {
                       return MyButton(
+                        buttonTap: () {
+                          setState(() {
+                            if (userInput.length > 0) {
+                              userInput =
+                                  userInput.substring(0, userInput.length - 1);
+                            }
+                          });
+                        },
                         buttonText: buttons[index],
                         color: Colors.redAccent,
                         textColor: Colors.white,
