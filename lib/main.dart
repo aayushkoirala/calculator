@@ -64,6 +64,7 @@ class _HomePageState extends State<HomePage> {
                     height: 50,
                   ),
                   Container(
+              
                     padding: EdgeInsets.all(20),
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -71,6 +72,8 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(fontSize: 25),
                     ),
                   ),
+                  Divider(),
+                  
                   Container(
                     padding: EdgeInsets.all(20),
                     alignment: Alignment.centerRight,
@@ -87,9 +90,12 @@ class _HomePageState extends State<HomePage> {
             flex: 2,
             child: Container(
               child: GridView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                reverse: true,
                   itemCount: buttons.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 4),
+                 
                   itemBuilder: (BuildContext context, int index) {
                     if (index == 0) {
                       return MyButton(
