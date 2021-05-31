@@ -1,6 +1,6 @@
+import 'package:math_expressions/math_expressions.dart';
 import 'package:calculator/buttons.dart';
 import 'package:flutter/material.dart';
-import 'package:math_expressions/math_expressions.dart';
 
 void main() {
   runApp(MyApp());
@@ -70,10 +70,9 @@ class _HomePageState extends State<HomePage> {
                     child: Text(
                       userInput,
                       style: TextStyle(fontSize: 25, color: Colors.white),
-                      
                     ),
                   ),
-                  Divider(thickness: 2,color: Colors.white),
+                  Divider(thickness: 2, color: Colors.white),
                   Container(
                     padding: EdgeInsets.all(20),
                     alignment: Alignment.centerRight,
@@ -117,7 +116,6 @@ class _HomePageState extends State<HomePage> {
                                   userInput.substring(0, userInput.length - 1);
                             }
                           });
-
                           setState(() {
                             output();
                           });
@@ -164,7 +162,6 @@ class _HomePageState extends State<HomePage> {
                               userInput += buttons[index];
                             }
                           });
-
                           setState(() {
                             output();
                           });
@@ -198,6 +195,13 @@ class _HomePageState extends State<HomePage> {
     return false;
   }
 
+  void clear() {
+    if (userAnswer != '') {
+      userInput = userAnswer;
+      userAnswer = '';
+    }
+  }
+
   void output() {
     userInput = userInput.replaceAll('x', '*'); //math expressions
     Parser par = Parser();
@@ -205,12 +209,5 @@ class _HomePageState extends State<HomePage> {
     ContextModel cm = ContextModel();
     double evaluate = exp.evaluate(EvaluationType.REAL, cm);
     userAnswer = evaluate.toString();
-  }
-
-  void clear() {
-    if (userAnswer != '') {
-      userInput = userAnswer;
-      userAnswer = '';
-    }
   }
 }
