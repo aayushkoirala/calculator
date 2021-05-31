@@ -27,21 +27,21 @@ class _HomePageState extends State<HomePage> {
     'DEL',
     '%',
     '/',
-    '9',
-    '8',
     '7',
+    '8',
+    '9',
     'x',
-    '6',
-    '5',
     '4',
+    '5',
+    '6',
     '-',
-    '3',
-    '2',
     '1',
+    '2',
+    '3',
     '+',
     '0',
+    '+/-',
     '.',
-    'ANS',
     '=',
   ];
 
@@ -64,8 +64,12 @@ class _HomePageState extends State<HomePage> {
                   itemBuilder: (BuildContext context, int index) {
                     return MyButton(
                       buttonText: buttons[index],
-                      color: Colors.grey,
-                      textColor: Colors.white,
+                      color: isOperator(buttons[index])
+                          ? Colors.grey
+                          : Colors.deepPurple[50],
+                      textColor: isOperator(buttons[index])
+                          ? Colors.black
+                          : Colors.black,
                     );
                   }),
             ),
@@ -73,5 +77,12 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
+  }
+
+  bool isOperator(String x) {
+    if (x == '%' || x == '/' || x == 'x' || x == '-' || x == '+' || x == '=') {
+      return true;
+    }
+    return false;
   }
 }
